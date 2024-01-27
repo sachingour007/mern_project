@@ -37,7 +37,6 @@ userSchema.pre("save", async function (next) {
   if (!user.isModified("password")) {
     next();
   }
-
   try {
     const saltRound = await bcrypt.genSalt(10);
     const hash_password = await bcrypt.hash(user.password, saltRound);
@@ -46,6 +45,12 @@ userSchema.pre("save", async function (next) {
     next(error);
   }
 });
+
+
+userSchema.methods.comparePassword = async function (password){
+  console.log(password,this, this.password)
+  return bcrypt.compare(password, this.password);
+}
 
 //JSON web token
 /** 
