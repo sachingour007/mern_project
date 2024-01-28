@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv").config();
 const router = require("./routes/auth.routes.js");
 const connectDB = require("./db/index.js");
+const errorMiddleware = require("./middlewares/error.middlewares.js");
 
 app.use(express.json());
 
@@ -11,8 +12,7 @@ app.use("/", (req, res) => {
   res.send("hello");
 });
 
-
-
+app.use(errorMiddleware);
 
 connectDB()
   .then(() => {
@@ -23,5 +23,3 @@ connectDB()
   .catch((err) => {
     "MONGO DB connection failed !!!", err;
   });
-
-
