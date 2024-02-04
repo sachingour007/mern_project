@@ -1,18 +1,15 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
-const authRoute = require("./routes/auth.routes.js");
-const contactRoute = require("./routes/contact.routes.js");
+const authRoutes = require("./routes/auth.routes");
+const contactRoutes = require("./routes/contact.routes");
 const connectDB = require("./db/index.js");
 const errorMiddleware = require("./middlewares/error.middlewares.js");
 
 app.use(express.json());
 
-app.use("/api/auth", authRoute);
-app.use("/api/form", contactRoute);
-// app.use("/", (req, res) => {
-//   res.send("hello");
-// });
+app.use("/api/auth", authRoutes);
+app.use("/api/form", contactRoutes);
 
 app.use(errorMiddleware);
 
