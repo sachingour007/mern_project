@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background: #000;
+  padding: 10px 0;
+  .headerWrapper {
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+      width: 30%;
+      a {
+        text-decoration: none;
+        color: #fff;
+        text-transform: uppercase;
+      }
+    }
+    .menu {
+      width: 70%;
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        li {
+          margin-right: 5px;
+          a {
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
