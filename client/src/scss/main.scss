@@ -1,1 +1,9 @@
+@import "./base/_global.scss";
+
+//module
 @import "./module/_header.scss"; //Header CSS
+
+//pages
+@import "./pages/register";
+@import "./pages/login";
+@import "./pages/home";

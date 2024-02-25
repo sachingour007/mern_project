@@ -1,0 +1,55 @@
+.registerSection {
+  background: #000;
+  padding-top: 50px;
+  .wrapper {
+    padding: 0 80px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .imgContainer {
+      width: calc(50% - 100px);
+      img {
+        width: 100%;
+      }
+    }
+    .registerContent {
+      width: 50%;
+      h2 {
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+      form {
+        display: flex;
+        flex-flow: column;
+        label {
+          font-size: 18px;
+          font-weight: 500px;
+          padding: 5px 0;
+          letter-spacing: 1px;
+          line-height: 115%;
+          color: #fff;
+        }
+        input {
+          padding: 7px 10px;
+          margin: 5px 50px 5px 0;
+          border-radius: 5px;
+          border: none;
+          background: rgb(234, 234, 234);
+          font-size: 16px;
+          color: blueviolet;
+        }
+        #submitBtn {
+          margin: 20px auto;
+          text-align: center;
+          font-size: 20px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          background: #000;
+          color: #fff;
+          border: 1px solid #fff;
+        }
+      }
+    }
+  }
+}

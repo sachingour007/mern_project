@@ -1,0 +1,25 @@
+.homeSection {
+  padding-top: 50px;
+  background: #000;
+  .wrapper {
+    padding: 0 80px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .homeInfo {
+      width: calc(50%);
+      p {
+        color: #fff;
+      }
+      h1 {
+        color: #fff;
+      }
+    }
+    .homeImage {
+      width: calc(50% - 100px);
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
