@@ -15,10 +15,22 @@ const Home = () => {
               eligendi repudiandae dignissimos hic quod delectus cum fuga
               dolorem. Ducimus, illum in.
             </p>
+
+            <a href="">
+              <button>Contact Us</button>
+            </a>
+            <a href="">
+              <button>Learn More</button>
+            </a>
           </div>
           <div className="homeImage">
             <img src={homeimg} alt="" />
           </div>
+        </div>
+      </section>
+      <section className="counterSection">
+        <div className="wrapper">
+            
         </div>
       </section>
     </>
