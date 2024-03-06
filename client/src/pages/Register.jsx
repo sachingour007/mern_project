@@ -22,7 +22,24 @@ const Register = () => {
       phone: "",
       password: "",
     });
+    register();
     console.log(registerForm);
+  };
+
+  const register = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registerForm),
+      });
+
+      console.log(response);
+    } catch (err) {
+      console.log("register", err);
+    }
   };
 
   return (
