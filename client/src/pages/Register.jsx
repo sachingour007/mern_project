@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import loginFromImg from "../asset/images/loginFromImg.png";
+import {useNavigate} from 'react-router-dom'
 import "../scss/pages/_register.scss";
 
 const Register = () => {
+  const navigate  = useNavigate()
   const [registerForm, setRegisterForm] = useState({
     username: "",
     email: "",
@@ -37,6 +39,12 @@ const Register = () => {
       });
 
       console.log(response);
+      if(response.ok){
+        alert("register Succesfully")
+        navigate('/login')
+      }else{
+        alert("Data not match")
+      }
     } catch (err) {
       console.log("register", err);
     }

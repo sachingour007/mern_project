@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import loginFromImg from "../asset/images/loginFromImg.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -13,11 +15,33 @@ const Login = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
+    loginn();
     setLoginForm({
       email: "",
       password: "",
     });
     console.log(loginForm);
+  };
+
+  const loginn = async () => {
+    try {
+      const res = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginForm),
+      });
+      console.log(res);
+      if (res.ok) {
+        alert("login Succesfully");
+        navigate("/");
+      } else {
+        alert("Data not match");
+      }
+    } catch (err) {
+      console.log("login", err);
+    }
   };
 
   return (
