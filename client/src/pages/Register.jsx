@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import loginFromImg from "../asset/images/loginFromImg.png";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import "../scss/pages/_register.scss";
+import { useAuth } from "../store/auth";
 
 const Register = () => {
-  const navigate  = useNavigate()
+  const navigate = useNavigate();
+  const storeTokenInLS = useAuth();
   const [registerForm, setRegisterForm] = useState({
     username: "",
     email: "",
     phone: "",
     password: "",
   });
-
   const changeHandler = (e) => {
     setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
   };
@@ -39,11 +40,14 @@ const Register = () => {
       });
 
       console.log(response);
-      if(response.ok){
-        alert("register Succesfully")
-        navigate('/login')
-      }else{
-        alert("Data not match")
+      if (response.ok) {
+        const res_data = await response.json();
+        console.log("res from server", res_data);
+        storeTokenInLS(res_data.token);
+        alert("register Succesfully");
+        navigate("/login");
+      } else {
+        alert("Data not match");
       }
     } catch (err) {
       console.log("register", err);

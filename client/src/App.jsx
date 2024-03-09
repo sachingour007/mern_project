@@ -8,6 +8,7 @@ import {
   Service,
   Register,
   Login,
+  Logout,
 } from "./pages/pagesIndex.js";
 import Navbar from "./component/Navbar.jsx";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/service" element={<Service />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>
     </>

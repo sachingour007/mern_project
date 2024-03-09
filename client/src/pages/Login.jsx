@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import loginFromImg from "../asset/images/loginFromImg.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const storeTokenInLS = useAuth();
+
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -35,6 +38,8 @@ const Login = () => {
       console.log(res);
       if (res.ok) {
         alert("login Succesfully");
+        const res_data = await res.json();
+        storeTokenInLS(res_data.token);
         navigate("/");
       } else {
         alert("Data not match");
