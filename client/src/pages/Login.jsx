@@ -5,7 +5,7 @@ import { useAuth } from "../store/auth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const storeTokenInLS = useAuth();
+  const {storeTokenInLS} = useAuth();
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -35,10 +35,10 @@ const Login = () => {
         },
         body: JSON.stringify(loginForm),
       });
-      console.log(res);
       if (res.ok) {
         alert("login Succesfully");
         const res_data = await res.json();
+        console.log(res_data);
         storeTokenInLS(res_data.token);
         navigate("/");
       } else {

@@ -6,7 +6,7 @@ import { useAuth } from "../store/auth";
 
 const Register = () => {
   const navigate = useNavigate();
-  const storeTokenInLS = useAuth();
+  const {storeTokenInLS} = useAuth();
   const [registerForm, setRegisterForm] = useState({
     username: "",
     email: "",

@@ -37,8 +37,6 @@ const register = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: "internal server erro" });
-
-
   }
 };
 
@@ -55,10 +53,10 @@ const login = async (req, res) => {
     if (!userExist) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
-    
+
     // const user = await bcrypt.compare(password, userExist.password);
 
-    const user = await userExist.comparePassword(password)
+    const user = await userExist.comparePassword(password);
 
     if (user) {
       res.status(201).json({
@@ -74,4 +72,13 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { home, register, login };
+const user = async (req, res) => {
+  try {
+    const userData = req.user;
+    return res.status(200).json({ msg: userData });
+  } catch (err) {
+    console.log("err form user route", err);
+  }
+};
+
+module.exports = { home, register, login, user };
