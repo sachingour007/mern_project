@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useAuth } from "../store/auth";
 
 const Contact = () => {
+  const { user } = useAuth();
+  console.log(user);
   const [contactData, setContactData] = useState({
     username: "",
     email: "",

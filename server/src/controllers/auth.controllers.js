@@ -11,10 +11,10 @@ const home = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("resiter function", req.body);
     const { username, email, phone, password } = req.body;
 
-    const userExist = await User.findOne({ email: email });
+    const userExist = await User.findOne({ email });
 
     if (userExist) {
       return res.status(400).json({ msg: "email already exists" });
@@ -29,6 +29,7 @@ const register = async (req, res) => {
     * */
 
     const userCreated = await User.create({ username, email, phone, password });
+    console.log(userCreated);
 
     res.status(201).json({
       massage: "Resgistration Successfully",
@@ -75,7 +76,7 @@ const login = async (req, res) => {
 const user = async (req, res) => {
   try {
     const userData = req.user;
-    return res.status(200).json({ msg: userData });
+    return res.status(200).json({ userData });
   } catch (err) {
     console.log("err form user route", err);
   }
