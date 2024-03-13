@@ -5,13 +5,12 @@ import { useAuth } from "../store/auth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const {storeTokenInLS} = useAuth();
+  const {storeTokenInLS, isLoggedIn} = useAuth();
 
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
-
   const changeHandler = (e) => {
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
   };
@@ -41,6 +40,7 @@ const Login = () => {
         console.log(res_data);
         storeTokenInLS(res_data.token);
         navigate("/");
+        
       } else {
         alert("Data not match");
       }

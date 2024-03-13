@@ -15,6 +15,7 @@ const register = async (req, res) => {
     const { username, email, phone, password } = req.body;
 
     const userExist = await User.findOne({ email });
+    console.log(userExist);
 
     if (userExist) {
       return res.status(400).json({ msg: "email already exists" });
@@ -29,7 +30,8 @@ const register = async (req, res) => {
     * */
 
     const userCreated = await User.create({ username, email, phone, password });
-    console.log(userCreated);
+
+    console.log("usercreated", userCreated);
 
     res.status(201).json({
       massage: "Resgistration Successfully",

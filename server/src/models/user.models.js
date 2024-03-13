@@ -3,34 +3,15 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
-  usernmae: {
-    type: String,
-    require: true,
-  },
-  email: {
-    type: String,
-    require: true,
-  },
-  phone: {
-    type: String,
-    require: true,
-  },
-  password: {
-    type: String,
-    require: true,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
+  username: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  password: { type: String, required: true },
+  isAdmin: { type: Boolean, default: false },
 });
 /**
- * Here we can also use Password hasing when user save in db this below function work and hash the password
- *
- * user
- *
- *
- */
+ * Here we can also use Password hasing when user save in db this below function work and hash the password user*/
+
 userSchema.pre("save", async function (next) {
   // console.log(this);
   const user = this;
@@ -46,11 +27,10 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-
-userSchema.methods.comparePassword = async function (password){
-  console.log(password,this, this.password)
+userSchema.methods.comparePassword = async function (password) {
+  console.log(password, this, this.password);
   return bcrypt.compare(password, this.password);
-}
+};
 
 //JSON web token
 /** 

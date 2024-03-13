@@ -14,7 +14,9 @@ export const AuthProvider = ({ children }) => {
     setTonken("");
     return localStorage.removeItem("token");
   };
+
   //Jwt Authentication => to get the currently loggedin user data
+
   const userAuthentication = async () => {
     try {
       const response = await fetch("http://localhost:8080/api/auth/user", {
@@ -37,6 +39,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   let isLoggedIn = !!token;
+  console.log(isLoggedIn);
 
   return (
     <AuthContext.Provider
