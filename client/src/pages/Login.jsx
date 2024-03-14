@@ -22,7 +22,6 @@ const Login = () => {
       email: "",
       password: "",
     });
-    console.log(loginForm);
   };
 
   const loginn = async () => {

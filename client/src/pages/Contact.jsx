@@ -1,26 +1,53 @@
 import React, { useState } from "react";
 import { useAuth } from "../store/auth";
+import { json } from "react-router-dom";
 
 const Contact = () => {
   const { user } = useAuth();
-  console.log(user);
   const [contactData, setContactData] = useState({
     username: "",
     email: "",
     message: "",
   });
+  const [userData, setUserData] = useState(true);
+
+  if (userData && user) {
+    setContactData({
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
+
+    setUserData(false);
+  }
+
   const contactHandler = (e) => {
     setContactData({ ...contactData, [e.target.name]: e.target.value });
   };
 
   const contactSubmit = (e) => {
     e.preventDefault();
+    contactFormData();
     console.log(contactData);
     setContactData({
       username: "",
       email: "",
       message: "",
     });
+  };
+
+  const contactFormData = async () => {
+    const res = await fetch("http://localhost:8080/api/form/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contactData),
+    });
+    if (res.ok) {
+      const contact_data = await res.json();
+      console.log(contact_data);
+    }
   };
 
   return (

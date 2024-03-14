@@ -5,11 +5,14 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setTonken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
-
+  
   const storeTokenInLS = (serverToken) => {
     return localStorage.setItem("token", serverToken);
   };
 
+  
+  let isLoggedIn = !!token;
+  
   const logoutUser = () => {
     setTonken("");
     return localStorage.removeItem("token");
@@ -27,7 +30,7 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.ok) {
         const data = await response.json();
-        setUser(data);
+        setUser(data.userData);
       }
     } catch (err) {
       console.log("error fetchin user data");
@@ -37,9 +40,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     userAuthentication();
   }, []);
-
-  let isLoggedIn = !!token;
-  console.log(isLoggedIn);
 
   return (
     <AuthContext.Provider

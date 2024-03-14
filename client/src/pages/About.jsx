@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import aboutimg from "../asset/images/loginFromImg.png";
+import { useAuth } from "../store/auth";
 
 const About = () => {
+  const { user } = useAuth();
+
+  if(!user){
+    return <div>Data not found</div>
+  }
+  
+
+  useEffect(() => {
+    
+    console.log(user);
+  }, [user]);
+
   return (
     <section className="aboutSection">
       <div className="wrapper">
         <div className="aboutInfo">
           <h3>
-            Welcome, <span>Sachin Gour</span>
+            Welcome, <span>{user.username}</span>
           </h3>
           <h2>Why Choose Us?</h2>
           <p>

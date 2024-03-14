@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../scss/main.scss";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../store/auth.jsx";
 
 const Navbar = () => {
   const { isLoggedIn } = useAuth();
+  useEffect(() => {
+
+  },[isLoggedIn])
   return (
     <>
       <header>
