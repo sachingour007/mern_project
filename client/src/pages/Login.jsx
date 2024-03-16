@@ -5,7 +5,7 @@ import { useAuth } from "../store/auth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const {storeTokenInLS, isLoggedIn} = useAuth();
+  const { storeTokenInLS, isLoggedIn } = useAuth();
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -18,10 +18,6 @@ const Login = () => {
   const loginHandler = (e) => {
     e.preventDefault();
     loginn();
-    setLoginForm({
-      email: "",
-      password: "",
-    });
   };
 
   const loginn = async () => {
@@ -33,15 +29,18 @@ const Login = () => {
         },
         body: JSON.stringify(loginForm),
       });
+      const res_data = await res.json();
+      console.log(res_data);
       if (res.ok) {
+        setLoginForm({
+          email: "",
+          password: "",
+        });
         alert("login Succesfully");
-        const res_data = await res.json();
-        console.log(res_data);
         storeTokenInLS(res_data.token);
         navigate("/");
-        
       } else {
-        alert("Data not match");
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
     } catch (err) {
       console.log("login", err);

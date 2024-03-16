@@ -6,7 +6,7 @@ import { useAuth } from "../store/auth";
 
 const Register = () => {
   const navigate = useNavigate();
-  const {storeTokenInLS} = useAuth();
+  const { storeTokenInLS } = useAuth();
   const [registerForm, setRegisterForm] = useState({
     username: "",
     email: "",
@@ -19,12 +19,6 @@ const Register = () => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    setRegisterForm({
-      username: "",
-      email: "",
-      phone: "",
-      password: "",
-    });
     register();
     console.log(registerForm);
   };
@@ -38,16 +32,22 @@ const Register = () => {
         },
         body: JSON.stringify(registerForm),
       });
+      const res_data = await response.json();
+      console.log("res from server", res_data);
 
       console.log(response);
       if (response.ok) {
-        const res_data = await response.json();
-        console.log("res from server", res_data);
         storeTokenInLS(res_data.token);
+        setRegisterForm({
+          username: "",
+          email: "",
+          phone: "",
+          password: "",
+        });
         alert("register Succesfully");
         navigate("/login");
       } else {
-        alert("Data not match");
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
     } catch (err) {
       console.log("register", err);

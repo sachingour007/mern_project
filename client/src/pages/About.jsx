@@ -5,13 +5,7 @@ import { useAuth } from "../store/auth";
 const About = () => {
   const { user } = useAuth();
 
-  if(!user){
-    return <div>Data not found</div>
-  }
-  
-
   useEffect(() => {
-    
     console.log(user);
   }, [user]);
 
@@ -19,9 +13,14 @@ const About = () => {
     <section className="aboutSection">
       <div className="wrapper">
         <div className="aboutInfo">
-          <h3>
-            Welcome, <span>{user.username}</span>
-          </h3>
+          {user ? (
+            <h3>
+              Welcome, <span>{user.username}</span>
+            </h3>
+          ) : (
+            <h3>Welcome</h3>
+          )}
+
           <h2>Why Choose Us?</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
