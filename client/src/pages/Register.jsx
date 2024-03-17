@@ -3,6 +3,7 @@ import loginFromImg from "../asset/images/loginFromImg.png";
 import { useNavigate } from "react-router-dom";
 import "../scss/pages/_register.scss";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -44,10 +45,12 @@ const Register = () => {
           phone: "",
           password: "",
         });
-        alert("register Succesfully");
-        navigate("/login");
+        toast.success("register Succesfully");
+        navigate("/");
       } else {
-        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (err) {
       console.log("register", err);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import loginFromImg from "../asset/images/loginFromImg.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,11 +37,11 @@ const Login = () => {
           email: "",
           password: "",
         });
-        alert("login Succesfully");
+        toast.success("login Succesfully");
         storeTokenInLS(res_data.token);
         navigate("/");
       } else {
-        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
     } catch (err) {
       console.log("login", err);
