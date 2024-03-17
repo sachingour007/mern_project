@@ -8,7 +8,6 @@ const authMillerware = async (req, res, next) => {
       .status(401)
       .json({ message: "unauthorized HTTP, Token not provided" });
   }
-
   const jwtTokent = token.replace("Bearer", "").trim();
   console.log("token form auth middle", jwtTokent);
   try {
