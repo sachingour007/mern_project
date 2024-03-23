@@ -11,6 +11,7 @@ import {
   Logout,
 } from "./pages/pagesIndex.js";
 import Navbar from "./component/Navbar.jsx";
+import { Admin, AdminUsers, AdminContacts } from "./component/layouts/index.js";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/admin" element={<Admin />}>
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="contacts" element={<AdminContacts />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
