@@ -26,6 +26,23 @@ const AdminUsers = () => {
   };
   const deleteUserHandler = async (id) => {
     console.log(id);
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/admin/user/delete/${id}`,
+        {
+          method: "Delete",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        getAllUserData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return allUserData?.length === 0 ? (

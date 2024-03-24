@@ -3,12 +3,18 @@ const router = express.Router();
 const {
   getAllUsers,
   getAllContacts,
+  deleteUserByAdmin,
 } = require("../controllers/admin.controllers");
-const authMillerware = require("../middlewares/auth.middleware");
+const authMiddlerware = require("../middlewares/auth.middleware");
 const adminMiddleware = require("../middlewares/admin-middleware");
 
-router.get("/users", authMillerware, adminMiddleware, getAllUsers);
-router.get("/contacts", authMillerware, getAllContacts);
-router.delete("/user/delete/:id");
+router.get("/users", authMiddlerware, adminMiddleware, getAllUsers);
+router.get("/contacts", authMiddlerware, getAllContacts);
+router.delete(
+  "/user/delete/:id",
+  authMiddlerware,
+  adminMiddleware,
+  deleteUserByAdmin
+);
 
 module.exports = router;

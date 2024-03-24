@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.models");
 
-const authMillerware = async (req, res, next) => {
+const authMiddlerware = async (req, res, next) => {
   const token = req.header("Authorization");
   if (!token) {
     return res
@@ -25,4 +25,4 @@ const authMillerware = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized. Invalid token" });
   }
 };
-module.exports = authMillerware;
+module.exports = authMiddlerware;
