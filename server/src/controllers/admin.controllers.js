@@ -38,4 +38,22 @@ const deleteUserByAdmin = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserByAdmin };
+/* Single User get Logic */
+
+const getUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const singleUserData = await User.findOne({ _id: id }, { password: 0 });
+    return res.status(200).json(singleUserData);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getAllContacts,
+  deleteUserByAdmin,
+  getUserById,
+};

@@ -4,6 +4,7 @@ const {
   getAllUsers,
   getAllContacts,
   deleteUserByAdmin,
+  getUserById,
 } = require("../controllers/admin.controllers");
 const authMiddlerware = require("../middlewares/auth.middleware");
 const adminMiddleware = require("../middlewares/admin-middleware");
@@ -16,5 +17,5 @@ router.delete(
   adminMiddleware,
   deleteUserByAdmin
 );
-
+router.get("/user/:id", authMiddlerware, adminMiddleware, getUserById);
 module.exports = router;
