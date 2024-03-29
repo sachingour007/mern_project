@@ -38,6 +38,21 @@ const deleteUserByAdmin = async (req, res) => {
   }
 };
 
+/*Update User*/
+const updateUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedUserData = req.body;
+    const updatedData = await User.updateOne(
+      { _id: id }, // filter by id
+      { $set: updatedUserData } //way of data update
+    );
+    return res.status(200).json({ updatedData });
+  } catch (error) {
+    next(error);
+  }
+};
+
 /* Single User get Logic */
 
 const getUserById = async (req, res) => {
@@ -56,4 +71,5 @@ module.exports = {
   getAllContacts,
   deleteUserByAdmin,
   getUserById,
+  updateUserById,
 };
