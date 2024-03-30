@@ -6,6 +6,7 @@ const {
   deleteUserByAdmin,
   getUserById,
   updateUserById,
+  deleteContactByAdmin,
 } = require("../controllers/admin.controllers");
 const authMiddlerware = require("../middlewares/auth.middleware");
 const adminMiddleware = require("../middlewares/admin-middleware");
@@ -17,6 +18,12 @@ router.delete(
   authMiddlerware,
   adminMiddleware,
   deleteUserByAdmin
+);
+router.delete(
+  "/contact/delete/:id",
+  authMiddlerware,
+  adminMiddleware,
+  deleteContactByAdmin
 );
 router.get("/user/:id", authMiddlerware, adminMiddleware, getUserById);
 router.patch(

@@ -38,6 +38,16 @@ const deleteUserByAdmin = async (req, res) => {
   }
 };
 
+const deleteContactByAdmin = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Contact.deleteOne({ _id: id });
+    return res.status(200).json({ message: "Contact Deleted Successfuly" });
+  } catch (error) {
+    next(error);
+  }
+};
+
 /*Update User*/
 const updateUserById = async (req, res) => {
   try {
@@ -72,4 +82,5 @@ module.exports = {
   deleteUserByAdmin,
   getUserById,
   updateUserById,
+  deleteContactByAdmin,
 };
